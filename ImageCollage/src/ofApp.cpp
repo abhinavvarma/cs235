@@ -76,7 +76,20 @@ void ofApp::keyPressed(int key) {
 	case OF_KEY_ALT:
 		cam.enableMouseInput();
 		break;
+	case OF_KEY_UP:
+		moveSelectedImage(1);
+		break;
+	case OF_KEY_DOWN:
+		moveSelectedImage(-1);
+		break;
 	}
+}
+
+
+void ofApp::moveSelectedImage(int c) {
+	int i = find(images.begin(), images.end(), selectedImage) - images.begin();
+	images.erase(images.begin() + i);
+	images.insert(images.begin() + i + c, selectedImage);
 }
 
 
@@ -173,7 +186,7 @@ void ofApp::renderSelection() {
 	cam.end();
 }
 
-void ofApp::processSelection(int x, int y) {
+Image* ofApp::processSelection(int x, int y) {
 	unsigned char res[4];
 	GLint viewport[4];
 
@@ -193,14 +206,10 @@ void ofApp::processSelection(int x, int y) {
 	if (res[0] > 0 && res[0] <= images.size()) {
 		Image *image = images[res[0] - 1];
 		image->bSelected = true;
-		selectedImage = image;
-
-		// move selected image to beginning of list
-		//
-		images.erase(images.begin() + (res[0] - 1) );
-		images.push_back(image);
+		selectedImage = image;		
 	}
 
+	return selectedImage;
 }
 
 Image::Image()

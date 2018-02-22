@@ -23,7 +23,7 @@ class ofApp : public ofBaseApp{
 		void draw();
 		void exit();
 		void renderSelection();
-		void processSelection(int x, int y);
+		Image* processSelection(int x, int y);
 
 		void keyPressed(int key);
 		void keyReleased(int key);
@@ -36,6 +36,7 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
+		void moveSelectedImage(int c);
 
 	private:
 		ofEasyCam	cam;
