@@ -37,10 +37,12 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 		void moveSelectedImage(int c);
+		void screenshot();
 
 	private:
 		ofEasyCam	cam;
 		vector<Image *> images;
 		Image *selectedImage;
 		ofVec3f mouse_last;
+		ofImage screen;
 };

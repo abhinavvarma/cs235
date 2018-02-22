@@ -67,8 +67,8 @@ void ofApp::keyPressed(int key) {
 	case 'f':
 		ofToggleFullscreen();
 		break;
-	case 'H':
-	case 'h':
+	case 's':
+		screenshot();
 		break;
 	case 'r':
 		cam.reset();
@@ -85,6 +85,11 @@ void ofApp::keyPressed(int key) {
 	}
 }
 
+
+void ofApp::screenshot() {
+	screen.grabScreen(0, 0, ofGetWidth(), ofGetHeight());
+	screen.save("screenshot.png");
+}
 
 void ofApp::moveSelectedImage(int c) {
 	int i = find(images.begin(), images.end(), selectedImage) - images.begin();
